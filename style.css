@@ -1,12 +1,17 @@
-body {
+.container-fluid{
     background-color: rgb(255,120,255);
     text-align: center;
 }
 
-#agendaMestre{
-    background-color: brown;
+#principal {
+    background-color: rgb(224, 85, 224);
 }
 
-#tarefas{
-    background-color: aliceblue;
+#agendaMestre {
+    background-color: rgb(187, 23, 187);
+    margin-top: 50px;
+}
+
+#tarefas {
+    background-color: rgb(126, 6, 126);
 }
