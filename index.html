@@ -4,9 +4,27 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="javascript.js"></script>
 </head>
 
 <body>
+    <h2>Agenda Online 1.0</h2>
+    <h4>Made by João Henrique</h4>
+    <br>
+    <br>
+    <div id="agendaMestre">
+        <p>Adicione a seguir a sua tarefa:</p>
+        <input id="tituloTarefa" placeholder="Título da tarefa:" type="text">
+        <p>Descrição:</p>
+        <textarea id="descricaoTarefa" rows="5" cols="20"></textarea>
+        <br>
+        <br>
+        <button type="button" onclick="agendar()">Adicionar</button>
+        <div id="tarefas">
+            <ol id="listaTarefas" type="1">
+            </ol>
+        </div>
+    </div>
 </body>
 
 </html>
