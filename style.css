@@ -1,17 +1,97 @@
-.container-fluid{
-    background-color: rgb(255,120,255);
+.container-fluid {
+    background-color: rgb(0, 0, 0);
     text-align: center;
 }
 
+#apresentacao{
+    color: rgb(0, 255, 200);
+    font-size: x-large;
+    font-family: 'Courier New', monospace;
+}
+
 #principal {
-    background-color: rgb(224, 85, 224);
+    background-color: rgb(12, 11, 12);
 }
 
 #agendaMestre {
-    background-color: rgb(187, 23, 187);
+    color: rgb(30, 255, 0);
+    background-color: rgb(12, 11, 12);
     margin-top: 50px;
+    padding-bottom: 25px;
+}
+
+
+.textosInput{
+    color: rgb(206, 11, 11);
+    background-color: rgb(26, 23, 23);
+}
+
+.textosInput::placeholder{
+    color: rgb(206, 11, 11);
 }
 
 #tarefas {
-    background-color: rgb(126, 6, 126);
+    background-color: rgb(31, 24, 31);
+}
+
+#listaTarefas {
+    display: flexbox;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.liLista {
+    color: rgb(0, 17, 255);
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.olLista {
+    color: rgb(0, 17, 255);
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonLista {
+    color: rgb(255, 0, 200);
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-width: 2px;
+    border-color: rgb(255, 0, 200);
+    border-top-left-radius: 40%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 50%;
+}
+
+#buttonFormato {
+    color: rgb(69, 167, 50);
+    background-color: rgb(7, 71, 7);
+}
+
+#buttonFormato:hover {
+    color: rgb(7, 71, 7);
+    background-color: rgb(69, 167, 50);
+}
+
+#buttonOrdem {
+    color: rgb(21, 8, 146);
+    background-color: rgb(26, 214, 199);
+}
+
+#buttonOrdem:hover{
+    color: rgb(26, 214, 199);
+    background-color: rgb(21, 8, 146);
+}
+
+.buttonsMenu {
+    font-size: xx-large;
+    width: 90%;
+    margin-top: 25px;
+    margin-right: 10%;
 }

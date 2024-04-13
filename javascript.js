@@ -7,6 +7,7 @@ function agendar() {
 
     cont += 1;
     let li = document.createElement("li");
+    li.classList.add("liLista");
     li.id = "liLista" + cont;
     li.innerText = titulo;
 
@@ -14,6 +15,7 @@ function agendar() {
 
     let ol = document.createElement("ol");
     ol.type = "a";
+    ol.classList.add("olLista");
     ol.id = "olLista" + cont;
 
     tarefas.append(ol);
@@ -23,6 +25,7 @@ function agendar() {
     ol.append(li2);
 
     let button = document.createElement("button");
+    button.classList.add("buttonLista");
     button.id = "buttonLista" + cont;
     button.type = "button";
     button.innerText = "Concluído";
@@ -44,4 +47,35 @@ function apagar(id) {
     li.parentElement.removeChild(li);
     ol.parentElement.removeChild(ol);
     button.parentElement.removeChild(button);
+}
+
+function trocarFormatoSequencia() {
+    let tipo = document.getElementById("listaTarefas").type;
+    switch (tipo) {
+        case "1":
+            document.getElementById("listaTarefas").type = "a";
+            break;
+        case "a":
+            document.getElementById("listaTarefas").type = "A";
+            break;
+        case "A":
+            document.getElementById("listaTarefas").type = "i";
+            break;
+        case "i":
+            document.getElementById("listaTarefas").type = "I";
+            break;
+        case "I":
+            document.getElementById("listaTarefas").type = "1";
+            break;
+    }
+}
+
+function trocarOrdemSequencia() {
+    let invertido = document.getElementById("listaTarefas").reversed;
+    if (invertido) {
+        document.getElementById("listaTarefas").reversed = false;
+    }
+    else {
+        document.getElementById("listaTarefas").reversed = true;
+    }
 }
