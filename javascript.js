@@ -14,15 +14,19 @@ function agendar() {
     tarefas.append(li);
 
     let ol = document.createElement("ol");
-    ol.type = "a";
+    ol.type = "A";
     ol.classList.add("olLista");
     ol.id = "olLista" + cont;
 
     tarefas.append(ol);
 
     let li2 = document.createElement("li");
-    li2.innerText = descricao;
+    li2.innerText = "Descrição:";
     ol.append(li2);
+
+    let li3 = document.createElement("li");
+    li3.innerText = descricao;
+    ol.append(li3);
 
     let button = document.createElement("button");
     button.classList.add("buttonLista");
@@ -67,6 +71,29 @@ function trocarFormatoSequencia() {
         case "I":
             document.getElementById("listaTarefas").type = "1";
             break;
+    }
+}
+
+function trocarFormatoSequencia2() {
+    for(let max = cont; max > 0; max--){
+        let tipo = document.getElementById("olLista" + max).type;
+        switch (tipo) {
+            case "1":
+                document.getElementById("olLista" + max).type = "a";
+                break;
+            case "a":
+                document.getElementById("olLista" + max).type = "A";
+                break;
+            case "A":
+                document.getElementById("olLista" + max).type = "i";
+                break;
+            case "i":
+                document.getElementById("olLista" + max).type = "I";
+                break;
+            case "I":
+                document.getElementById("olLista" + max).type = "1";
+                break;
+        }
     }
 }
 
