@@ -112,23 +112,6 @@ function trocarFormatoSequencia2() {
                 break;
         }  
     })
-    /*switch (tipo) {
-            case "1":
-                document.querySelectorAll(".ollista").type = "a";
-                break;
-            case "a":
-                document.querySelectorAll(".ollista").type = "A";
-                break;
-            case "A":
-                document.querySelectorAll(".ollista").type = "i";
-                break;
-            case "i":
-                document.querySelectorAll(".ollista").type = "I";
-                break;
-            case "I":
-                document.querySelectorAll(".ollista").type = "1";
-                break;
-        }*/
 }
 
 function trocarOrdemSequencia() {
