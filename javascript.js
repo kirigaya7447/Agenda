@@ -1,5 +1,9 @@
+//cont é o id de cada li que será único
 var cont = 0;
+//contador inicia-se junto do cont mas pode ser subtraído
 contador = 0;
+
+//verifica a contagem e printa
 setInterval(function () {
     if (contador > 1) {
         document.getElementById("contador").innerText = "Você tem " + contador + " tarefas para concluir";
