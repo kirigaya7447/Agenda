@@ -71,34 +71,34 @@
 }
 
 #buttonFormato {
-    color: rgb(69, 167, 50);
-    background-color: rgb(7, 71, 7);
+    color: rgb(233, 10, 40);
+    background-color: transparent;
 }
 
 #buttonFormato:hover {
-    color: rgb(7, 71, 7);
-    background-color: rgb(69, 167, 50);
+    color: rgb(136, 10, 27);
+    background-color: rgb(233, 10, 40);
 }
 
 
 #buttonFormato2 {
-    color: rgb(190, 155, 38);
-    background-color: rgb(255, 208, 0);
+    color: rgb(211, 166, 20);
+    background-color: transparent;
 }
 
 #buttonFormato2:hover {
-    color: rgb(255, 208, 0);
-    background-color: rgb(190, 155, 38);
+    color: rgb(165, 131, 19);
+    background-color: rgb(211, 166, 20);
 }
 
 #buttonOrdem {
-    color: rgb(21, 8, 146);
-    background-color: rgb(26, 214, 199);
+    color: rgb(31, 11, 204);
+    background-color: transparent;
 }
 
 #buttonOrdem:hover{
-    color: rgb(26, 214, 199);
-    background-color: rgb(21, 8, 146);
+    color: rgb(13, 5, 78);
+    background-color: rgb(31, 11, 204);
 }
 
 .buttonsMenu {

@@ -1,4 +1,16 @@
 var cont = 0;
+contador = 0;
+setInterval(function () {
+    if (contador > 1) {
+        document.getElementById("contador").innerText = "Você tem " + contador + " tarefas para concluir";
+    }
+    else if (contador == 1) {
+        document.getElementById("contador").innerText = "Você tem " + contador + " tarefa para concluir";
+    }
+    else {
+        document.getElementById("contador").innerText = "Você tem 0 tarefas";
+    }
+}, 500);
 
 function agendar() {
     let titulo = document.getElementById("tituloTarefa").value;
@@ -6,6 +18,7 @@ function agendar() {
     const tarefas = document.getElementById("listaTarefas");
 
     cont += 1;
+    contador += 1;
     let li = document.createElement("li");
     li.classList.add("liLista");
     li.id = "liLista" + cont;
@@ -51,6 +64,10 @@ function apagar(id) {
     li.parentElement.removeChild(li);
     ol.parentElement.removeChild(ol);
     button.parentElement.removeChild(button);
+
+    if (contador >= 1) {
+        contador -= 1;
+    }
 }
 
 function trocarFormatoSequencia() {
@@ -75,26 +92,43 @@ function trocarFormatoSequencia() {
 }
 
 function trocarFormatoSequencia2() {
-    for(let max = cont; max > 0; max--){
-        let tipo = document.getElementById("olLista" + max).type;
-        switch (tipo) {
+    let allOls = document.querySelectorAll(".olLista");
+    allOls.forEach(element =>{
+        switch (element.type) {
             case "1":
-                document.getElementById("olLista" + max).type = "a";
+                element.type = "a";
                 break;
             case "a":
-                document.getElementById("olLista" + max).type = "A";
+                element.type = "A";
                 break;
             case "A":
-                document.getElementById("olLista" + max).type = "i";
+                element.type = "i";
                 break;
             case "i":
-                document.getElementById("olLista" + max).type = "I";
+                element.type = "I";
                 break;
             case "I":
-                document.getElementById("olLista" + max).type = "1";
+                element.type = "1";
                 break;
-        }
-    }
+        }  
+    })
+    /*switch (tipo) {
+            case "1":
+                document.querySelectorAll(".ollista").type = "a";
+                break;
+            case "a":
+                document.querySelectorAll(".ollista").type = "A";
+                break;
+            case "A":
+                document.querySelectorAll(".ollista").type = "i";
+                break;
+            case "i":
+                document.querySelectorAll(".ollista").type = "I";
+                break;
+            case "I":
+                document.querySelectorAll(".ollista").type = "1";
+                break;
+        }*/
 }
 
 function trocarOrdemSequencia() {
