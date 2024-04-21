@@ -32,7 +32,9 @@
 }
 
 #tarefas {
-    background-color: rgb(31, 24, 31);
+    color: rgb(30, 255, 0);
+    margin-top: 50px;
+    padding-bottom: 25px;
 }
 
 #listaTarefas {
@@ -78,17 +80,6 @@
 #buttonFormato:hover {
     color: rgb(136, 10, 27);
     background-color: rgb(233, 10, 40);
-}
-
-
-#buttonFormato2 {
-    color: rgb(211, 166, 20);
-    background-color: transparent;
-}
-
-#buttonFormato2:hover {
-    color: rgb(165, 131, 19);
-    background-color: rgb(211, 166, 20);
 }
 
 #buttonOrdem {

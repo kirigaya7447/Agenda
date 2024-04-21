@@ -19,31 +19,36 @@
             <div id="apresentacao" class="col-lg-2 col-md-2 col-sm-2">
                 <h2>Agenda Online 1.0</h2>
                 <h4>Made by João Henrique</h4>
-                <h6>Na coluna ao lado adicione sua tarefa para hoje, coloque um título e descreva o que vai realizar no quadro abaixo <br>>>>>>>>>>>>>>>>>>>>>>></h6>
+                <h6>Na coluna ao lado adicione sua tarefa para hoje, coloque um título e descreva o que vai realizar no
+                    quadro abaixo <br>>>>>>>>>>>>>>>>>>>>>>></h6>
             </div>
-            <div class="offset-2 col-lg-4 col-md-4 col-sm-4">
+            <div class="offset-1 col-lg-3 col-md-3 col-sm-3">
                 <div id="principal">
                     <div id="agendaMestre">
                         <p>Adicione a seguir a sua tarefa:</p>
                         <input id="tituloTarefa" class="textosInput" placeholder="Título da tarefa:" type="text">
                         <p>Descrição:</p>
-                        <textarea id="descricaoTarefa" class="textosInput" placeholder="As atividades que você tem que fazer nesta tarefa:" rows="5" cols="20"></textarea>
+                        <textarea id="descricaoTarefa" class="textosInput"
+                            placeholder="As atividades que você tem que fazer nesta tarefa:" rows="5"
+                            cols="20"></textarea>
                         <br>
                         <br>
                         <button class="btn btn-outline-success" type="button" onclick="agendar()">Adicionar</button>
                         <br>
                         <br>
                         <h6 id="contador">Você tem 0 tarefas</h6>
-                        <div id="tarefas">
-                            <ol id="listaTarefas" type="1">
-                            </ol>
-                        </div>
                     </div>
                 </div>
             </div>
+            <div id="tarefas" class="col-lg-2 col-md-2 col-sm-2">
+                <ol id="listaTarefas" type="1">
+                </ol>
+            </div>
             <div id="extras" class="offset-2 col-lg-2 col-md-2 col-sm-2">
-                <button id="buttonFormato" class="buttonsMenu" type="button" onclick="trocarFormatoSequencia()">Trocar formato externo</button>
-                <button id="buttonOrdem" class="buttonsMenu" type="button" onclick="trocarOrdemSequencia()">Alterar ordem</button>
+                <button id="buttonFormato" class="buttonsMenu" type="button" onclick="trocarFormatoSequencia()">Trocar
+                    formato externo</button>
+                <button id="buttonOrdem" class="buttonsMenu" type="button" onclick="trocarOrdemSequencia()">Alterar
+                    ordem</button>
             </div>
         </div>
     </div>
