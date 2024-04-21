@@ -28,22 +28,17 @@ function agendar() {
     li.id = "liLista" + cont;
     li.innerText = titulo;
 
+    let p = document.createElement("p");
+    p.id = "paragrafoDescricao" + cont;
+    p.innerText = "Descrição:";
+
+    let p1 = document.createElement("p");
+    p1.id = "paragrafo" + cont;
+    p1.innerText = descricao;
+
     tarefas.append(li);
-
-    let ol = document.createElement("ol");
-    ol.type = "A";
-    ol.classList.add("olLista");
-    ol.id = "olLista" + cont;
-
-    tarefas.append(ol);
-
-    let li2 = document.createElement("li");
-    li2.innerText = "Descrição:";
-    ol.append(li2);
-
-    let li3 = document.createElement("li");
-    li3.innerText = descricao;
-    ol.append(li3);
+    tarefas.append(p);
+    tarefas.append(p1);
 
     let button = document.createElement("button");
     button.classList.add("buttonLista");
@@ -62,12 +57,14 @@ function agendar() {
 
 function apagar(id) {
     let li = document.getElementById("liLista" + id);
-    let ol = document.getElementById("olLista" + id);
     let button = document.getElementById("buttonLista" + id);
+    let p = document.getElementById("paragrafoDescricao" + id);
+    let p1 = document.getElementById("paragrafo" + id);
 
     li.parentElement.removeChild(li);
-    ol.parentElement.removeChild(ol);
     button.parentElement.removeChild(button);
+    p.parentElement.removeChild(p);
+    p1.parentElement.removeChild(p1);
 
     if (contador >= 1) {
         contador -= 1;
@@ -93,29 +90,6 @@ function trocarFormatoSequencia() {
             document.getElementById("listaTarefas").type = "1";
             break;
     }
-}
-
-function trocarFormatoSequencia2() {
-    let allOls = document.querySelectorAll(".olLista");
-    allOls.forEach(element =>{
-        switch (element.type) {
-            case "1":
-                element.type = "a";
-                break;
-            case "a":
-                element.type = "A";
-                break;
-            case "A":
-                element.type = "i";
-                break;
-            case "i":
-                element.type = "I";
-                break;
-            case "I":
-                element.type = "1";
-                break;
-        }  
-    })
 }
 
 function trocarOrdemSequencia() {
