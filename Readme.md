@@ -1,5 +1,5 @@
 **Uma agenda feita em html, css e js(a tríade do front-end)**
 
-*link rápido:*
+*Link rápido:*
 
 https://kirigaya7447.github.io/Agenda/
