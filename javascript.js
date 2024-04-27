@@ -42,6 +42,7 @@ function agendar() {
 
     let button = document.createElement("button");
     button.classList.add("buttonLista");
+    button.classList.add("buttonListaConcluido");
     button.id = "buttonLista" + cont;
     button.type = "button";
     button.innerText = "Concluído";
@@ -51,20 +52,35 @@ function agendar() {
     }
     tarefas.append(button);
 
+    let buttonSobe = document.createElement("button");
+    buttonSobe.classList.add("buttonLista");
+    buttonSobe.classList.add("buttonListaSubir");
+    buttonSobe.id = "buttonSobe" + cont;
+    buttonSobe.type = "button";
+    buttonSobe.innerText = "Subir";
+    buttonSobe.value = cont;
+    buttonSobe.onclick = function (){
+        subirTarefa(this.value);
+    }
+
+    tarefas.append(buttonSobe);
+
     document.getElementById("tituloTarefa").value = null;
     document.getElementById("descricaoTarefa").value = null;
 }
 
 function apagar(id) {
     let li = document.getElementById("liLista" + id);
-    let button = document.getElementById("buttonLista" + id);
     let p = document.getElementById("paragrafoDescricao" + id);
     let p1 = document.getElementById("paragrafo" + id);
+    let button = document.getElementById("buttonLista" + id);
+    let buttonSobe = document.getElementById("buttonSobe" + id);
 
     li.parentElement.removeChild(li);
-    button.parentElement.removeChild(button);
     p.parentElement.removeChild(p);
     p1.parentElement.removeChild(p1);
+    button.parentElement.removeChild(button);
+    buttonSobe.parentElement.removeChild(buttonSobe);
 
     if (contador >= 1) {
         contador -= 1;
@@ -100,4 +116,18 @@ function trocarOrdemSequencia() {
     else {
         document.getElementById("listaTarefas").reversed = true;
     }
+}
+
+function subirTarefa(id){
+    let paragrafoTitulo = document.getElementById("liLista" + id).innerText;
+    let paragrafoTexto = document.getElementById("paragrafo" + id).innerText;
+
+    let paragrafoTituloAntigo = document.getElementById("liLista" + (id - 1)).innerText;
+    let paragrafoTextoAntigo = document.getElementById("paragrafo" + (id - 1)).innerText;
+
+    document.getElementById("liLista" + id).innerText = paragrafoTituloAntigo;
+    document.getElementById("paragrafo" + id).innerText = paragrafoTextoAntigo;
+
+    document.getElementById("liLista" + (id - 1)).innerText = paragrafoTitulo;
+    document.getElementById("paragrafo" + (id - 1)).innerText = paragrafoTexto;
 }

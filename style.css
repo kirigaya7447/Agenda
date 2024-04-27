@@ -58,18 +58,28 @@
 }
 
 .buttonLista {
-    color: rgb(255, 0, 200);
     background-color: transparent;
-    margin-left: auto;
+    margin-left: 5px;
     margin-right: auto;
     margin-top: 15px;
     margin-bottom: 20px;
     border-width: 2px;
-    border-color: rgb(255, 0, 200);
     border-top-left-radius: 40%;
     border-top-right-radius: 50%;
     border-bottom-left-radius: 40%;
     border-bottom-right-radius: 50%;
+    display: flexbox;
+}
+
+.buttonListaConcluido {
+    color: rgb(255, 0, 200);
+    border-color: rgb(255, 0, 200);
+}
+
+
+.buttonListaSubir {
+    color: rgb(255, 102, 0);
+    border-color: rgb(255, 102, 0);
 }
 
 #buttonFormato {
