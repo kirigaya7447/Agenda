@@ -1,7 +1,12 @@
 //cont é o id de cada li que será único
 var cont = 0;
 //contador inicia-se junto do cont mas pode ser subtraído
-contador = 0;
+var contador = 0;
+
+var tarefasArray = new Array();
+if (localStorage.getItem("Tarefas") != null) {
+    tarefasArray.push(localStorage.getItem("Tarefas"));
+}
 
 //verifica a contagem e printa
 setInterval(function () {
@@ -59,11 +64,14 @@ function agendar() {
     buttonSobe.type = "button";
     buttonSobe.innerText = "Subir";
     buttonSobe.value = cont;
-    buttonSobe.onclick = function (){
+    buttonSobe.onclick = function () {
         subirTarefa(this.value);
     }
 
     tarefas.append(buttonSobe);
+    tarefasArray.push("Titulo" + cont + ": " + titulo + " Texto" + cont + ": " + descricao);
+    localStorage.setItem("Tarefas", tarefasArray);
+    alert(localStorage.getItem("Tarefas"));
 
     document.getElementById("tituloTarefa").value = null;
     document.getElementById("descricaoTarefa").value = null;
@@ -118,7 +126,7 @@ function trocarOrdemSequencia() {
     }
 }
 
-function subirTarefa(id){
+function subirTarefa(id) {
     let paragrafoTitulo = document.getElementById("liLista" + id).innerText;
     let paragrafoTexto = document.getElementById("paragrafo" + id).innerText;
 
@@ -130,4 +138,12 @@ function subirTarefa(id){
 
     document.getElementById("liLista" + (id - 1)).innerText = paragrafoTitulo;
     document.getElementById("paragrafo" + (id - 1)).innerText = paragrafoTexto;
+}
+
+function resetStorage(){
+    localStorage.removeItem("Tarefas");
+    tarefasArray = new Array();
+    document.getElementById("listaTarefas").innerHTML = "";
+    contador = 0;
+    alert("Removido com sucesso!");
 }
