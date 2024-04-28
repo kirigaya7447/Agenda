@@ -145,5 +145,6 @@ function resetStorage(){
     tarefasArray = new Array();
     document.getElementById("listaTarefas").innerHTML = "";
     contador = 0;
+    cont = 0;
     alert("Removido com sucesso!");
 }
