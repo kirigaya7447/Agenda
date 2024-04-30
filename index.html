@@ -21,6 +21,7 @@
                 <h4>Made by João Henrique</h4>
                 <h6>Na coluna ao lado adicione sua tarefa para hoje, coloque um título e descreva o que vai realizar no
                     quadro abaixo <br>>>>>>>>>>>>>>>>>>>>>>></h6>
+                <h6>Atenção: Ao fechar a guia as suas atividades ainda estarão salvas por curto tempo. Mas, para deletá-las efetivamente, aperte em "Resetar Lista"</h6>
             </div>
             <div class="offset-1 col-lg-3 col-md-3 col-sm-3">
                 <div id="principal">
@@ -46,14 +47,17 @@
             </div>
             <div id="extras" class="offset-2 col-lg-2 col-md-2 col-sm-2">
                 <button id="buttonFormato" class="buttonsMenu" type="button" onclick="trocarFormatoSequencia()">Trocar
-                    formato externo</button>
+                    Formato Externo</button>
                 <button id="buttonOrdem" class="buttonsMenu" type="button" onclick="trocarOrdemSequencia()">Alterar
-                    ordem</button>
+                    Ordem</button>
                 <button id="buttonReset" class="buttonsMenu" type="button" onclick="resetStorage()">Resetar
-                    ordem</button>
+                    Lista</button>
             </div>
         </div>
     </div>
 </body>
+<script>
+    verificarTarefa();
+</script>
 
 </html>

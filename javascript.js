@@ -3,11 +3,8 @@ var cont = 0;
 //contador inicia-se junto do cont mas pode ser subtraído
 var contador = 0;
 
-var tarefasArray = new Array();
-if (localStorage.getItem("Tarefas") != null) {
-    tarefasArray.push(localStorage.getItem("Tarefas"));
-}
-
+var tarefasArrayTitulo = new Array();
+var tarefasArrayTexto = new Array();
 //verifica a contagem e printa
 setInterval(function () {
     if (contador > 1) {
@@ -69,9 +66,10 @@ function agendar() {
     }
 
     tarefas.append(buttonSobe);
-    tarefasArray.push("Titulo" + cont + ": " + titulo + " Texto" + cont + ": " + descricao);
-    localStorage.setItem("Tarefas", tarefasArray);
-    alert(localStorage.getItem("Tarefas"));
+    tarefasArrayTitulo.push(titulo);
+    tarefasArrayTexto.push(descricao);
+    localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
+    localStorage.setItem("TarefasTexto", tarefasArrayTexto);
 
     document.getElementById("tituloTarefa").value = null;
     document.getElementById("descricaoTarefa").value = null;
@@ -79,10 +77,27 @@ function agendar() {
 
 function apagar(id) {
     let li = document.getElementById("liLista" + id);
+    let liTitulo = document.getElementById("liLista" + id).innerText;
     let p = document.getElementById("paragrafoDescricao" + id);
     let p1 = document.getElementById("paragrafo" + id);
+    let p1Texto = document.getElementById("paragrafo" + id).innerText;
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
+
+    let corteTitulo = tarefasArrayTitulo[0].split(",");
+    let corteTexto = tarefasArrayTexto[0].split(",");
+
+    tarefasArrayTitulo = new Array();
+    tarefasArrayTexto = new Array();
+    for (let cont = 0; cont < corteTitulo.length; cont++) {
+
+        if (corteTitulo[cont] !== liTitulo) {
+            tarefasArrayTitulo.push(corteTitulo[cont]);
+        }
+        if (corteTexto[cont] !== p1Texto) {
+            tarefasArrayTexto.push(corteTexto[cont])
+        }
+    }
 
     li.parentElement.removeChild(li);
     p.parentElement.removeChild(p);
@@ -93,6 +108,9 @@ function apagar(id) {
     if (contador >= 1) {
         contador -= 1;
     }
+
+    localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
+    localStorage.setItem("TarefasTexto", tarefasArrayTexto);
 }
 
 function trocarFormatoSequencia() {
@@ -140,11 +158,76 @@ function subirTarefa(id) {
     document.getElementById("paragrafo" + (id - 1)).innerText = paragrafoTexto;
 }
 
-function resetStorage(){
-    localStorage.removeItem("Tarefas");
-    tarefasArray = new Array();
+function resetStorage() {
+    localStorage.removeItem("TarefasTitulo");
+    localStorage.removeItem("TarefasTexto");
+    tarefasArrayTitulo = new Array();
+    tarefasArrayTexto = new Array();
     document.getElementById("listaTarefas").innerHTML = "";
     contador = 0;
     cont = 0;
     alert("Removido com sucesso!");
+}
+
+function verificarTarefa() {
+    if (localStorage.getItem("TarefasTitulo") != null) {
+        tarefasArrayTitulo.push(localStorage.getItem("TarefasTitulo"));
+        tarefasArrayTexto.push(localStorage.getItem("TarefasTexto"));
+
+        let corteTitulo = tarefasArrayTitulo[0].split(",");
+        let corteTexto = tarefasArrayTexto[0].split(",");
+
+        for (let a = 0; a < corteTitulo.length; a++) {
+            tarefasProntas(corteTitulo[a], corteTexto[a]);
+        }
+    }
+
+}
+
+function tarefasProntas(titulo, tarefa) {
+    const tarefas = document.getElementById("listaTarefas");
+
+    cont += 1;
+    contador += 1;
+    let li = document.createElement("li");
+    li.classList.add("liLista");
+    li.id = "liLista" + cont;
+    li.innerText = titulo;
+
+    let p = document.createElement("p");
+    p.id = "paragrafoDescricao" + cont;
+    p.innerText = "Descrição:";
+
+    let p1 = document.createElement("p");
+    p1.id = "paragrafo" + cont;
+    p1.innerText = tarefa;
+
+    tarefas.append(li);
+    tarefas.append(p);
+    tarefas.append(p1);
+
+    let button = document.createElement("button");
+    button.classList.add("buttonLista");
+    button.classList.add("buttonListaConcluido");
+    button.id = "buttonLista" + cont;
+    button.type = "button";
+    button.innerText = "Concluído";
+    button.value = cont;
+    button.onclick = function () {
+        apagar(this.value);
+    }
+    tarefas.append(button);
+
+    let buttonSobe = document.createElement("button");
+    buttonSobe.classList.add("buttonLista");
+    buttonSobe.classList.add("buttonListaSubir");
+    buttonSobe.id = "buttonSobe" + cont;
+    buttonSobe.type = "button";
+    buttonSobe.innerText = "Subir";
+    buttonSobe.value = cont;
+    buttonSobe.onclick = function () {
+        subirTarefa(this.value);
+    }
+
+    tarefas.append(buttonSobe);
 }
