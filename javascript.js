@@ -126,8 +126,6 @@ function apagar(id) {
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
 
-    alert(tarefasArrayTitulo)
-
     //corta os arrays, separando as partes pela vírgula
     
     let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
@@ -167,8 +165,6 @@ function apagar(id) {
     //seta no localstorage os arrays atualizados
     localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
     localStorage.setItem("TarefasTexto", tarefasArrayTexto);
-
-    alert(localStorage.getItem("TarefasTitulo"))
 }
 
 //altera o padrão de sequência da lista ordenada
