@@ -228,7 +228,6 @@ function resetStorage() {
 
     tarefasArrayTitulo = new Array();
     tarefasArrayTexto = new Array();
-    formatoTarefas = "1";
 
     document.getElementById("listaTarefas").innerHTML = "";
     contador = 0;
