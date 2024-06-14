@@ -173,18 +173,23 @@ function trocarFormatoSequencia() {
     switch (tipo) {
         case "1":
             document.getElementById("listaTarefas").type = "a";
+            localStorage.setItem("FormatoTarefas", "a");
             break;
         case "a":
             document.getElementById("listaTarefas").type = "A";
+            localStorage.setItem("FormatoTarefas", "A");
             break;
         case "A":
             document.getElementById("listaTarefas").type = "i";
+            localStorage.setItem("FormatoTarefas", "i");
             break;
         case "i":
             document.getElementById("listaTarefas").type = "I";
+            localStorage.setItem("FormatoTarefas", "I");
             break;
         case "I":
             document.getElementById("listaTarefas").type = "1";
+            localStorage.setItem("FormatoTarefas", "1");
             break;
     }
 }
@@ -219,9 +224,11 @@ function subirTarefa(id) {
 function resetStorage() {
     localStorage.removeItem("TarefasTitulo");
     localStorage.removeItem("TarefasTexto");
+    localStorage.removeItem("FormatoTarefas");
 
     tarefasArrayTitulo = new Array();
     tarefasArrayTexto = new Array();
+    formatoTarefas = "1";
 
     document.getElementById("listaTarefas").innerHTML = "";
     contador = 0;
@@ -230,7 +237,7 @@ function resetStorage() {
 }
 
 //verifica se já há dados no localstorage
-function verificarTarefa() {
+function initConfigurations() {
     if (localStorage.getItem("TarefasTitulo") != null) {
         tarefasArrayTitulo.push(localStorage.getItem("TarefasTitulo"));
         tarefasArrayTexto.push(localStorage.getItem("TarefasTexto"));
@@ -241,6 +248,10 @@ function verificarTarefa() {
         for (let cont = 0; cont < corteTitulo.length; cont++) {
             tarefasProntas(corteTitulo[cont], corteTexto[cont]);
         }
+    }
+
+    if(localStorage.getItem("FormatoTarefas") != null){
+        document.getElementById("listaTarefas").type = localStorage.getItem("FormatoTarefas");
     }
 
 }
