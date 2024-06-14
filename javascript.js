@@ -126,21 +126,26 @@ function apagar(id) {
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
 
+    alert(tarefasArrayTitulo)
+
     //corta os arrays, separando as partes pela vírgula
-    let corteTitulo = tarefasArrayTitulo[0].split(",");
-    let corteTexto = tarefasArrayTexto[0].split(",");
+    
+    let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
+    let corteTexto = localStorage.getItem("TarefasTexto").split(",");
 
     //zera os arrays
     tarefasArrayTitulo = new Array();
     tarefasArrayTexto = new Array();
 
+
     //loop para montar novo array sem as partes apagadas
     for (let cont = 0; cont < corteTitulo.length; cont++) {
-
+        
         //verifica o título
         if (corteTitulo[cont] !== liTitulo) {
             tarefasArrayTitulo.push(corteTitulo[cont]);
         }
+
         //verifica o texto
         if (corteTexto[cont] !== p1Texto) {
             tarefasArrayTexto.push(corteTexto[cont])
@@ -162,6 +167,8 @@ function apagar(id) {
     //seta no localstorage os arrays atualizados
     localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
     localStorage.setItem("TarefasTexto", tarefasArrayTexto);
+
+    alert(localStorage.getItem("TarefasTitulo"))
 }
 
 //altera o padrão de sequência da lista ordenada
