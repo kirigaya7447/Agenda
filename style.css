@@ -1,5 +1,9 @@
+#body{
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+}
+
 .container-fluid {
-    height: 100000px;
     background-color: rgb(0, 0, 0);
     text-align: center;
 }
