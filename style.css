@@ -11,7 +11,7 @@
 #apresentacao{
     color: rgb(0, 255, 200);
     font-size: x-large;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', monospace;   
 }
 
 #principal {
@@ -23,6 +23,7 @@
     background-color: rgb(12, 11, 12);
     margin-top: 50px;
     padding-bottom: 25px;
+    position: fixed;
 }
 
 
