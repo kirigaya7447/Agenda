@@ -126,45 +126,61 @@ function apagar(id) {
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
 
-    //corta os arrays, separando as partes pela vírgula
-    
-    let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
-    let corteTexto = localStorage.getItem("TarefasTexto").split(",");
+    //abaixa o contador
+    contador -= 1;
 
-    //zera os arrays
-    tarefasArrayTitulo = new Array();
-    tarefasArrayTexto = new Array();
-
-
-    //loop para montar novo array sem as partes apagadas
-    for (let cont = 0; cont < corteTitulo.length; cont++) {
-        
-        //verifica o título
-        if (corteTitulo[cont] !== liTitulo) {
-            tarefasArrayTitulo.push(corteTitulo[cont]);
-        }
-
-        //verifica o texto
-        if (corteTexto[cont] !== p1Texto) {
-            tarefasArrayTexto.push(corteTexto[cont])
-        }
-    }
-
-    //apaga todo o conteúdo
-    li.parentElement.removeChild(li);
-    p.parentElement.removeChild(p);
-    p1.parentElement.removeChild(p1);
-    button.parentElement.removeChild(button);
-    buttonSobe.parentElement.removeChild(buttonSobe);
-
-    //abaixa o contador se ele for maior ou igual que 1
+    //verifica se o contador é maior ou igual a 1
+    // se maior ou igual ele apaga a tarefa, senão ele apaga o localstorage
     if (contador >= 1) {
-        contador -= 1;
-    }
 
-    //seta no localstorage os arrays atualizados
-    localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
-    localStorage.setItem("TarefasTexto", tarefasArrayTexto);
+        //corta os arrays, separando as partes pela vírgula
+        let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
+        let corteTexto = localStorage.getItem("TarefasTexto").split(",");
+
+        //zera os arrays
+        tarefasArrayTitulo = new Array();
+        tarefasArrayTexto = new Array();
+
+
+        //loop para montar novo array sem as partes apagadas
+        for (let cont = 0; cont < corteTitulo.length; cont++) {
+
+            //verifica o título
+            if (corteTitulo[cont] !== liTitulo) {
+                tarefasArrayTitulo.push(corteTitulo[cont]);
+            }
+
+            //verifica o texto
+            if (corteTexto[cont] !== p1Texto) {
+                tarefasArrayTexto.push(corteTexto[cont])
+            }
+        }
+
+
+        //apaga todo o conteúdo
+        li.parentElement.removeChild(li);
+        p.parentElement.removeChild(p);
+        p1.parentElement.removeChild(p1);
+        button.parentElement.removeChild(button);
+        buttonSobe.parentElement.removeChild(buttonSobe);
+
+        //seta no localstorage os arrays atualizados
+        localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
+        localStorage.setItem("TarefasTexto", tarefasArrayTexto);
+    }
+    else {
+        //apaga todo o conteúdo
+        li.parentElement.removeChild(li);
+        p.parentElement.removeChild(p);
+        p1.parentElement.removeChild(p1);
+        button.parentElement.removeChild(button);
+        buttonSobe.parentElement.removeChild(buttonSobe);
+
+        localStorage.removeItem("TarefasTitulo");
+        localStorage.removeItem("TarefasTexto");
+
+        alert(localStorage.getItem("FormatoTarefas"));
+    }
 }
 
 //altera o padrão de sequência da lista ordenada
@@ -237,7 +253,7 @@ function resetStorage() {
 
 //verifica se já há dados no localstorage
 function initConfigurations() {
-    if (localStorage.getItem("TarefasTitulo") != null) {
+    if (localStorage.getItem("TarefasTitulo") !== null || localStorage.getItem("TarefasTitulo") !== "") {
         tarefasArrayTitulo.push(localStorage.getItem("TarefasTitulo"));
         tarefasArrayTexto.push(localStorage.getItem("TarefasTexto"));
 
@@ -249,7 +265,8 @@ function initConfigurations() {
         }
     }
 
-    if(localStorage.getItem("FormatoTarefas") != null){
+    if (localStorage.getItem("FormatoTarefas") != null) {
+        alert(localStorage.getItem("FormatoTarefas"));
         document.getElementById("listaTarefas").type = localStorage.getItem("FormatoTarefas");
     }
 
