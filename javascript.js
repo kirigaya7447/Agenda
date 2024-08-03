@@ -178,8 +178,6 @@ function apagar(id) {
 
         localStorage.removeItem("TarefasTitulo");
         localStorage.removeItem("TarefasTexto");
-
-        alert(localStorage.getItem("FormatoTarefas"));
     }
 }
 
