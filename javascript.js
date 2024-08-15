@@ -26,95 +26,102 @@ function agendar() {
     let descricao = document.getElementById("descricaoTarefa").value;
     const tarefas = document.getElementById("listaTarefas");
 
-    cont += 1;
-    contador += 1;
-
-    //cria uma tag li 
-    let li = document.createElement("li");
-    //adiciona uma class
-    li.classList.add("liLista");
-    //coloca o id baseado no contador
-    li.id = "liLista" + cont;
-    //escreve o título do usuário
-    li.innerText = titulo;
-
-    //cria uma tag p
-    let p = document.createElement("p");
-    //cria um id baseado no contador
-    p.id = "paragrafoDescricao" + cont;
-    //coloca o texto "Descrição:"
-    p.innerText = "Descrição:";
-
-    //cria mais uma tag p
-    let p1 = document.createElement("p");
-    //adiciona o id baseado no contador
-    p1.id = "paragrafo" + cont;
-    //escreve o texto do usuário
-    p1.innerText = descricao;
-
-    //seta o li, o primeiro p e o segundo
-    tarefas.append(li);
-    tarefas.append(p);
-    tarefas.append(p1);
-
-    //cria um botão
-    let button = document.createElement("button");
-    //adiciona uma class
-    button.classList.add("buttonLista");
-    //adiciona mais uma class
-    button.classList.add("buttonListaConcluido");
-    //coloca um id baseado no contador
-    button.id = "buttonLista" + cont;
-    //seta o tipo do botão
-    button.type = "button";
-    //escreve o texto do botão
-    button.innerText = "Concluído";
-    //seta o valor do botão como o do contador
-    button.value = cont;
-    //adiciona uma função para o onclick do botão
-    button.onclick = function () {
-        apagar(this.value);
+    if (titulo === null || titulo === "" || titulo === " ") {
+        document.getElementById("tituloVazio").style.color = "rgb(231, 208, 2)";
     }
+    else {
+        document.getElementById("tituloVazio").style.color = "rgb(12, 11, 12)";
 
-    //adiciona o botão
-    tarefas.append(button);
+        cont += 1;
+        contador += 1;
 
-    //cria mais um botão
-    let buttonSobe = document.createElement("button");
-    //adiciona um class
-    buttonSobe.classList.add("buttonLista");
-    //adiciona mais um class
-    buttonSobe.classList.add("buttonListaSubir");
-    //adiciona o id baseado no contador
-    buttonSobe.id = "buttonSobe" + cont;
-    //especifica o tipo do botão
-    buttonSobe.type = "button";
-    //escreve o texto do botão
-    buttonSobe.innerText = "Subir";
-    //define o valor do botão como o do contador
-    buttonSobe.value = cont;
-    //adiciona função para o onclick
-    buttonSobe.onclick = function () {
-        subirTarefa(this.value);
+        //cria uma tag li 
+        let li = document.createElement("li");
+        //adiciona uma class
+        li.classList.add("liLista");
+        //coloca o id baseado no contador
+        li.id = "liLista" + cont;
+        //escreve o título do usuário
+        li.innerText = titulo;
+
+        //cria uma tag p
+        let p = document.createElement("p");
+        //cria um id baseado no contador
+        p.id = "paragrafoDescricao" + cont;
+        //coloca o texto "Descrição:"
+        p.innerText = "Descrição:";
+
+        //cria mais uma tag p
+        let p1 = document.createElement("p");
+        //adiciona o id baseado no contador
+        p1.id = "paragrafo" + cont;
+        //escreve o texto do usuário
+        p1.innerText = descricao;
+
+        //seta o li, o primeiro p e o segundo
+        tarefas.append(li);
+        tarefas.append(p);
+        tarefas.append(p1);
+
+        //cria um botão
+        let button = document.createElement("button");
+        //adiciona uma class
+        button.classList.add("buttonLista");
+        //adiciona mais uma class
+        button.classList.add("buttonListaConcluido");
+        //coloca um id baseado no contador
+        button.id = "buttonLista" + cont;
+        //seta o tipo do botão
+        button.type = "button";
+        //escreve o texto do botão
+        button.innerText = "Concluído";
+        //seta o valor do botão como o do contador
+        button.value = cont;
+        //adiciona uma função para o onclick do botão
+        button.onclick = function () {
+            apagar(this.value);
+        }
+
+        //adiciona o botão
+        tarefas.append(button);
+
+        //cria mais um botão
+        let buttonSobe = document.createElement("button");
+        //adiciona um class
+        buttonSobe.classList.add("buttonLista");
+        //adiciona mais um class
+        buttonSobe.classList.add("buttonListaSubir");
+        //adiciona o id baseado no contador
+        buttonSobe.id = "buttonSobe" + cont;
+        //especifica o tipo do botão
+        buttonSobe.type = "button";
+        //escreve o texto do botão
+        buttonSobe.innerText = "Subir";
+        //define o valor do botão como o do contador
+        buttonSobe.value = cont;
+        //adiciona função para o onclick
+        buttonSobe.onclick = function () {
+            subirTarefa(this.value);
+        }
+
+        //adiciona o botão
+        tarefas.append(buttonSobe);
+
+        //Adiciona ao array de titulos o nome da nova tarefa
+        tarefasArrayTitulo.push(titulo);
+        //Adiciona ao array de textos o texto da nova tarefa
+        tarefasArrayTexto.push(descricao);
+
+        //seta no localstorage o array Titulo atualizado
+        localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
+        //seta no localstorage o array Texto atualizado
+        localStorage.setItem("TarefasTexto", tarefasArrayTexto);
+
+        //zera o texto do título no html
+        document.getElementById("tituloTarefa").value = null;
+        //zera o texto do parágrafo no html
+        document.getElementById("descricaoTarefa").value = null;
     }
-
-    //adiciona o botão
-    tarefas.append(buttonSobe);
-
-    //Adiciona ao array de titulos o nome da nova tarefa
-    tarefasArrayTitulo.push(titulo);
-    //Adiciona ao array de textos o texto da nova tarefa
-    tarefasArrayTexto.push(descricao);
-
-    //seta no localstorage o array Titulo atualizado
-    localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
-    //seta no localstorage o array Texto atualizado
-    localStorage.setItem("TarefasTexto", tarefasArrayTexto);
-
-    //zera o texto do título no html
-    document.getElementById("tituloTarefa").value = null;
-    //zera o texto do parágrafo no html
-    document.getElementById("descricaoTarefa").value = null;
 }
 
 function apagar(id) {
@@ -259,15 +266,16 @@ function initConfigurations() {
         let corteTexto = tarefasArrayTexto[0].split(",");
 
         for (let cont = 0; cont < corteTitulo.length; cont++) {
-            tarefasProntas(corteTitulo[cont], corteTexto[cont]);
+            if (corteTitulo[cont] !== null || corteTitulo[cont] !== "" || corteTexto[cont] !== null || corteTexto[cont] !== "") {
+                tarefasProntas(corteTitulo[cont], corteTexto[cont]);
+            }
         }
-    }
 
-    if (localStorage.getItem("FormatoTarefas") != null) {
-        alert(localStorage.getItem("FormatoTarefas"));
-        document.getElementById("listaTarefas").type = localStorage.getItem("FormatoTarefas");
-    }
+        if (localStorage.getItem("FormatoTarefas") != null) {
+            document.getElementById("listaTarefas").type = localStorage.getItem("FormatoTarefas");
+        }
 
+    }
 }
 
 //coleta os dados do localstorage e monta o conteúdo

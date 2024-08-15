@@ -39,6 +39,12 @@
     color: rgb(206, 11, 11);
 }
 
+#tituloVazio{
+    color: rgb(12, 11, 12);
+    font-size: larger;
+    text-decoration: underline;
+}
+
 #tarefas {
     color: rgb(30, 255, 0);
     margin-top: 50px;
