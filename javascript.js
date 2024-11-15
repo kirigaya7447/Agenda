@@ -28,9 +28,11 @@ function agendar() {
 
     if (titulo === null || titulo === "" || titulo === " ") {
         document.getElementById("tituloVazio").style.color = "rgb(231, 208, 2)";
+        document.getElementById("tituloVazio").style.display = "inline-block";
     }
     else {
         document.getElementById("tituloVazio").style.color = "rgb(12, 11, 12)";
+        document.getElementById("tituloVazio").style.display = "none";
 
         cont += 1;
         contador += 1;
