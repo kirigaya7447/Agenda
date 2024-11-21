@@ -27,10 +27,12 @@ function agendar() {
     const tarefas = document.getElementById("listaTarefas");
 
     if (titulo === null || titulo === "" || titulo === " ") {
+        //mensagem de alerta sobre título vazio aplicada
         document.getElementById("tituloVazio").style.color = "rgb(231, 208, 2)";
         document.getElementById("tituloVazio").style.display = "inline-block";
     }
     else {
+        //mensagem de alerta sobre título vazio apagada
         document.getElementById("tituloVazio").style.color = "rgb(12, 11, 12)";
         document.getElementById("tituloVazio").style.display = "none";
 
@@ -46,24 +48,31 @@ function agendar() {
         //escreve o título do usuário
         li.innerText = titulo;
 
-        //cria uma tag p
-        let p = document.createElement("p");
-        //cria um id baseado no contador
-        p.id = "paragrafoDescricao" + cont;
-        //coloca o texto "Descrição:"
-        p.innerText = "Descrição:";
-
-        //cria mais uma tag p
-        let p1 = document.createElement("p");
-        //adiciona o id baseado no contador
-        p1.id = "paragrafo" + cont;
-        //escreve o texto do usuário
-        p1.innerText = descricao;
-
-        //seta o li, o primeiro p e o segundo
+        //seta o li
         tarefas.append(li);
-        tarefas.append(p);
-        tarefas.append(p1);
+
+
+        //verifica se a descrição não está vazia
+        if (descricao !== null && descricao !== "" && descricao !== " ") {
+            //cria uma tag p
+            var p = document.createElement("p");
+            //cria um id baseado no contador
+            p.id = "paragrafoDescricao" + cont;
+            //coloca o texto "Descrição:"
+            p.innerText = "Descrição:";
+
+            //cria mais uma tag p
+            var p1 = document.createElement("p");
+            //adiciona o id baseado no contador
+            p1.id = "paragrafo" + cont;
+            //escreve o texto do usuário
+            p1.innerText = descricao;
+
+            //acrescenta agora o primeiro p e o segundo
+            tarefas.append(p);
+            tarefas.append(p1);
+
+        }
 
         //cria um botão
         let button = document.createElement("button");
