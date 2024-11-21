@@ -139,8 +139,11 @@ function apagar(id) {
     let li = document.getElementById("liLista" + id);
     let liTitulo = li.innerText;
     let p = document.getElementById("paragrafoDescricao" + id);
-    let p1 = document.getElementById("paragrafo" + id);
-    let p1Texto = p1.innerText;
+
+    if (p !== null && p !== "" && p !== " ") {
+        var p1 = document.getElementById("paragrafo" + id);
+        var p1Texto = p1.innerText;
+    }
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
 
@@ -169,7 +172,7 @@ function apagar(id) {
             }
 
             //verifica o texto
-            if (corteTexto[cont] !== p1Texto) {
+            if (corteTexto[cont] !== p1Texto && p1Texto !== null && p1Texto !== "" && p1Texto !== " ") {
                 tarefasArrayTexto.push(corteTexto[cont])
             }
         }
@@ -177,8 +180,12 @@ function apagar(id) {
 
         //apaga todo o conteúdo
         li.parentElement.removeChild(li);
-        p.parentElement.removeChild(p);
-        p1.parentElement.removeChild(p1);
+
+        if (p !== null && p !== "" && p !== " ") {
+            p.parentElement.removeChild(p);
+            p1.parentElement.removeChild(p1);
+        }
+
         button.parentElement.removeChild(button);
         buttonSobe.parentElement.removeChild(buttonSobe);
 
@@ -189,8 +196,13 @@ function apagar(id) {
     else {
         //apaga todo o conteúdo
         li.parentElement.removeChild(li);
-        p.parentElement.removeChild(p);
-        p1.parentElement.removeChild(p1);
+
+        if (p !== null && p !== "" && p !== " ") {
+            p.parentElement.removeChild(p);
+            p1.parentElement.removeChild(p1);
+
+        }
+
         button.parentElement.removeChild(button);
         buttonSobe.parentElement.removeChild(buttonSobe);
 
