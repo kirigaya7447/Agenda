@@ -27,10 +27,12 @@ function agendar() {
     const tarefas = document.getElementById("listaTarefas");
 
     if (titulo === null || titulo === "" || titulo === " ") {
+        //mensagem de alerta sobre título vazio aplicada
         document.getElementById("tituloVazio").style.color = "rgb(231, 208, 2)";
         document.getElementById("tituloVazio").style.display = "inline-block";
     }
     else {
+        //mensagem de alerta sobre título vazio apagada
         document.getElementById("tituloVazio").style.color = "rgb(12, 11, 12)";
         document.getElementById("tituloVazio").style.display = "none";
 
@@ -46,22 +48,28 @@ function agendar() {
         //escreve o título do usuário
         li.innerText = titulo;
 
+        //seta o li
+        tarefas.append(li);
+
         //cria uma tag p
-        let p = document.createElement("p");
+        var p = document.createElement("p");
         //cria um id baseado no contador
         p.id = "paragrafoDescricao" + cont;
-        //coloca o texto "Descrição:"
-        p.innerText = "Descrição:";
 
         //cria mais uma tag p
-        let p1 = document.createElement("p");
+        var p1 = document.createElement("p");
         //adiciona o id baseado no contador
         p1.id = "paragrafo" + cont;
-        //escreve o texto do usuário
-        p1.innerText = descricao;
 
-        //seta o li, o primeiro p e o segundo
-        tarefas.append(li);
+        //verifica se a descrição não está vazia
+        if (descricao !== null && descricao !== "" && descricao !== " ") {
+            //coloca o texto "Descrição:"
+            p.innerText = "Descrição:";
+
+            //escreve o texto do usuário
+            p1.innerText = descricao;
+        }
+        //acrescenta agora o primeiro p e o segundo
         tarefas.append(p);
         tarefas.append(p1);
 
@@ -130,8 +138,11 @@ function apagar(id) {
     let li = document.getElementById("liLista" + id);
     let liTitulo = li.innerText;
     let p = document.getElementById("paragrafoDescricao" + id);
-    let p1 = document.getElementById("paragrafo" + id);
-    let p1Texto = p1.innerText;
+
+    if (p !== null && p !== "" && p !== " ") {
+        var p1 = document.getElementById("paragrafo" + id);
+        var p1Texto = p1.innerText;
+    }
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
 
@@ -160,7 +171,7 @@ function apagar(id) {
             }
 
             //verifica o texto
-            if (corteTexto[cont] !== p1Texto) {
+            if (corteTexto[cont] !== p1Texto && p1Texto !== null && p1Texto !== "" && p1Texto !== " ") {
                 tarefasArrayTexto.push(corteTexto[cont])
             }
         }
@@ -168,8 +179,12 @@ function apagar(id) {
 
         //apaga todo o conteúdo
         li.parentElement.removeChild(li);
-        p.parentElement.removeChild(p);
-        p1.parentElement.removeChild(p1);
+
+        if (p !== null && p !== "" && p !== " ") {
+            p.parentElement.removeChild(p);
+            p1.parentElement.removeChild(p1);
+        }
+
         button.parentElement.removeChild(button);
         buttonSobe.parentElement.removeChild(buttonSobe);
 
@@ -180,8 +195,13 @@ function apagar(id) {
     else {
         //apaga todo o conteúdo
         li.parentElement.removeChild(li);
-        p.parentElement.removeChild(p);
-        p1.parentElement.removeChild(p1);
+
+        if (p !== null && p !== "" && p !== " ") {
+            p.parentElement.removeChild(p);
+            p1.parentElement.removeChild(p1);
+
+        }
+
         button.parentElement.removeChild(button);
         buttonSobe.parentElement.removeChild(buttonSobe);
 
@@ -261,15 +281,21 @@ function resetStorage() {
 //verifica se já há dados no localstorage
 function initConfigurations() {
     if (localStorage.getItem("TarefasTitulo") !== null || localStorage.getItem("TarefasTitulo") !== "") {
-        tarefasArrayTitulo.push(localStorage.getItem("TarefasTitulo"));
-        tarefasArrayTexto.push(localStorage.getItem("TarefasTexto"));
+        
+        let intermediarioTitulo = [];
+        let intermediarioTexto = [];
 
-        let corteTitulo = tarefasArrayTitulo[0].split(",");
-        let corteTexto = tarefasArrayTexto[0].split(",");
+        intermediarioTitulo.push(localStorage.getItem("TarefasTitulo"));
+        intermediarioTexto.push(localStorage.getItem("TarefasTexto"));
+
+        let corteTitulo = intermediarioTitulo[0].split(",");
+        let corteTexto = intermediarioTexto[0].split(",");
 
         for (let cont = 0; cont < corteTitulo.length; cont++) {
             if (corteTitulo[cont] !== null || corteTitulo[cont] !== "" || corteTexto[cont] !== null || corteTexto[cont] !== "") {
                 tarefasProntas(corteTitulo[cont], corteTexto[cont]);
+                tarefasArrayTitulo.push(corteTitulo[cont]);
+                tarefasArrayTexto.push(corteTexto[cont]);
             }
         }
 
@@ -300,17 +326,21 @@ function tarefasProntas(titulo, tarefa) {
     let p = document.createElement("p");
     //adiciona o id baseado no contador
     p.id = "paragrafoDescricao" + cont;
-    //coloca o texto como Descrição
-    p.innerText = "Descrição:";
 
     //cria uma tag p
     let p1 = document.createElement("p");
     //adiciona o id baseado no contador
     p1.id = "paragrafo" + cont;
-    //adiciona o texto baseado no localstorage
-    p1.innerText = tarefa;
 
-    //adiciona as três tags
+    if (tarefa !== "" && tarefa !== null && tarefa !== undefined) {
+        //coloca o texto como Descrição
+        p.innerText = "Descrição:";
+
+        //adiciona o texto baseado no localstorage
+        p1.innerText = tarefa;
+
+    }
+
     tarefas.append(li);
     tarefas.append(p);
     tarefas.append(p1);
