@@ -51,28 +51,27 @@ function agendar() {
         //seta o li
         tarefas.append(li);
 
+        //cria uma tag p
+        var p = document.createElement("p");
+        //cria um id baseado no contador
+        p.id = "paragrafoDescricao" + cont;
+
+        //cria mais uma tag p
+        var p1 = document.createElement("p");
+        //adiciona o id baseado no contador
+        p1.id = "paragrafo" + cont;
 
         //verifica se a descrição não está vazia
         if (descricao !== null && descricao !== "" && descricao !== " ") {
-            //cria uma tag p
-            var p = document.createElement("p");
-            //cria um id baseado no contador
-            p.id = "paragrafoDescricao" + cont;
             //coloca o texto "Descrição:"
             p.innerText = "Descrição:";
 
-            //cria mais uma tag p
-            var p1 = document.createElement("p");
-            //adiciona o id baseado no contador
-            p1.id = "paragrafo" + cont;
             //escreve o texto do usuário
             p1.innerText = descricao;
-
-            //acrescenta agora o primeiro p e o segundo
-            tarefas.append(p);
-            tarefas.append(p1);
-
         }
+        //acrescenta agora o primeiro p e o segundo
+        tarefas.append(p);
+        tarefas.append(p1);
 
         //cria um botão
         let button = document.createElement("button");
