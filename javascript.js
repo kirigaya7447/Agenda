@@ -332,7 +332,7 @@ function tarefasProntas(titulo, tarefa) {
     //adiciona o id baseado no contador
     p1.id = "paragrafo" + cont;
 
-    if (tarefa !== "" && tarefa !== null && tarefa !== undefined) {
+    if (tarefa !== "" || tarefa !== null || tarefa !== undefined) {
         //coloca o texto como Descrição
         p.innerText = "Descrição:";
 
