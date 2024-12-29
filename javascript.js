@@ -281,15 +281,21 @@ function resetStorage() {
 //verifica se já há dados no localstorage
 function initConfigurations() {
     if (localStorage.getItem("TarefasTitulo") !== null || localStorage.getItem("TarefasTitulo") !== "") {
-        tarefasArrayTitulo.push(localStorage.getItem("TarefasTitulo"));
-        tarefasArrayTexto.push(localStorage.getItem("TarefasTexto"));
+        
+        let intermediarioTitulo = [];
+        let intermediarioTexto = [];
 
-        let corteTitulo = tarefasArrayTitulo[0].split(",");
-        let corteTexto = tarefasArrayTexto[0].split(",");
+        intermediarioTitulo.push(localStorage.getItem("TarefasTitulo"));
+        intermediarioTexto.push(localStorage.getItem("TarefasTexto"));
+
+        let corteTitulo = intermediarioTitulo[0].split(",");
+        let corteTexto = intermediarioTexto[0].split(",");
 
         for (let cont = 0; cont < corteTitulo.length; cont++) {
             if (corteTitulo[cont] !== null || corteTitulo[cont] !== "" || corteTexto[cont] !== null || corteTexto[cont] !== "") {
                 tarefasProntas(corteTitulo[cont], corteTexto[cont]);
+                tarefasArrayTitulo.push(corteTitulo[cont]);
+                tarefasArrayTexto.push(corteTexto[cont]);
             }
         }
 
@@ -320,17 +326,21 @@ function tarefasProntas(titulo, tarefa) {
     let p = document.createElement("p");
     //adiciona o id baseado no contador
     p.id = "paragrafoDescricao" + cont;
-    //coloca o texto como Descrição
-    p.innerText = "Descrição:";
 
     //cria uma tag p
     let p1 = document.createElement("p");
     //adiciona o id baseado no contador
     p1.id = "paragrafo" + cont;
-    //adiciona o texto baseado no localstorage
-    p1.innerText = tarefa;
 
-    //adiciona as três tags
+    if (tarefa !== "" && tarefa !== null && tarefa !== undefined) {
+        //coloca o texto como Descrição
+        p.innerText = "Descrição:";
+
+        //adiciona o texto baseado no localstorage
+        p1.innerText = tarefa;
+
+    }
+
     tarefas.append(li);
     tarefas.append(p);
     tarefas.append(p1);
