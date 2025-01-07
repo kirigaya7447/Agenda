@@ -292,10 +292,17 @@ function initConfigurations() {
         let corteTexto = intermediarioTexto[0].split(",");
 
         for (let cont = 0; cont < corteTitulo.length; cont++) {
-            if (corteTitulo[cont] !== null || corteTitulo[cont] !== "" || corteTexto[cont] !== null || corteTexto[cont] !== "") {
-                tarefasProntas(corteTitulo[cont], corteTexto[cont]);
-                tarefasArrayTitulo.push(corteTitulo[cont]);
-                tarefasArrayTexto.push(corteTexto[cont]);
+            if (corteTitulo[cont] !== null || corteTitulo[cont] !== "") {
+                if(corteTexto[cont] !== null && corteTexto[cont] !== "" && corteTexto[cont] !== undefined && corteTexto[cont] !== " "){
+                    tarefasProntas(corteTitulo[cont], corteTexto[cont]);
+                    tarefasArrayTitulo.push(corteTitulo[cont]);
+                    tarefasArrayTexto.push(corteTexto[cont]);
+                }
+                else{
+                    tarefasProntas(corteTitulo[cont], null);
+                    tarefasArrayTitulo.push(corteTitulo[cont]);
+                    tarefasArrayTexto.push(null);
+                }
             }
         }
 
@@ -332,7 +339,7 @@ function tarefasProntas(titulo, tarefa) {
     //adiciona o id baseado no contador
     p1.id = "paragrafo" + cont;
 
-    if (tarefa !== "" && tarefa !== null && tarefa !== undefined) {
+    if (tarefa !== null && tarefa !== "" && tarefa !== undefined && tarefa !== " ") {
         //coloca o texto como Descrição
         p.innerText = "Descrição:";
 
