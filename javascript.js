@@ -26,7 +26,7 @@ function agendar() {
     let descricao = document.getElementById("descricaoTarefa").value;
     const tarefas = document.getElementById("listaTarefas");
 
-    if (titulo === null || titulo === "" || titulo === " ") {
+    if (titulo === null || titulo === "" || titulo === undefined || titulo === " ") {
         //mensagem de alerta sobre título vazio aplicada
         document.getElementById("tituloVazio").style.color = "rgb(231, 208, 2)";
         document.getElementById("tituloVazio").style.display = "inline-block";
@@ -62,7 +62,7 @@ function agendar() {
         p1.id = "paragrafo" + cont;
 
         //verifica se a descrição não está vazia
-        if (descricao !== null && descricao !== "" && descricao !== " ") {
+        if (descricao !== null && descricao !== "" && descricao !== undefined && descricao !== " ") {
             //coloca o texto "Descrição:"
             p.innerText = "Descrição:";
 
@@ -180,7 +180,7 @@ function apagar(id) {
         //apaga todo o conteúdo
         li.parentElement.removeChild(li);
 
-        if (p !== null && p !== "" && p !== " ") {
+        if (p !== null && p !== "" && p !== undefined && p !== " ") {
             p.parentElement.removeChild(p);
             p1.parentElement.removeChild(p1);
         }
