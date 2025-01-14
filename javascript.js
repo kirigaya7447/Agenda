@@ -164,20 +164,18 @@ function apagar(id) {
 
         //loop para montar novo array sem as partes apagadas
         for (let cont = 0; cont < corteTitulo.length; cont++) {
-
             //verifica o título
             if (corteTitulo[cont] !== liTitulo) {
                 tarefasArrayTitulo.push(corteTitulo[cont]);
             }
 
             //verifica o texto
-            if (p1Texto !== null && p1Texto !== "" && p1Texto !== undefined && p1Texto !== " ") {
+            if (p1Texto !== null || p1Texto !== "" || p1Texto !== undefined || p1Texto !== " ") {
                 if (corteTexto[cont] !== p1Texto) {
                     tarefasArrayTexto.push(corteTexto[cont]);
                 }
             }
             else{
-                alert("Vazio");
                 tarefasArrayTexto.push(null);
             }
         }
