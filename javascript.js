@@ -164,15 +164,19 @@ function apagar(id) {
 
         //loop para montar novo array sem as partes apagadas
         for (let cont = 0; cont < corteTitulo.length; cont++) {
-
             //verifica o título
             if (corteTitulo[cont] !== liTitulo) {
                 tarefasArrayTitulo.push(corteTitulo[cont]);
             }
 
             //verifica o texto
-            if (corteTexto[cont] !== p1Texto && p1Texto !== null && p1Texto !== "" && p1Texto !== " ") {
-                tarefasArrayTexto.push(corteTexto[cont])
+            if (p1Texto !== null || p1Texto !== "" || p1Texto !== undefined || p1Texto !== " ") {
+                if (corteTexto[cont] !== p1Texto) {
+                    tarefasArrayTexto.push(corteTexto[cont]);
+                }
+            }
+            else{
+                tarefasArrayTexto.push(null);
             }
         }
 
@@ -281,7 +285,7 @@ function resetStorage() {
 //verifica se já há dados no localstorage
 function initConfigurations() {
     if (localStorage.getItem("TarefasTitulo") !== null || localStorage.getItem("TarefasTitulo") !== "") {
-        
+
         let intermediarioTitulo = [];
         let intermediarioTexto = [];
 
@@ -293,12 +297,12 @@ function initConfigurations() {
 
         for (let cont = 0; cont < corteTitulo.length; cont++) {
             if (corteTitulo[cont] !== null || corteTitulo[cont] !== "") {
-                if(corteTexto[cont] !== null && corteTexto[cont] !== "" && corteTexto[cont] !== undefined && corteTexto[cont] !== " "){
+                if (corteTexto[cont] !== null && corteTexto[cont] !== "" && corteTexto[cont] !== undefined && corteTexto[cont] !== " ") {
                     tarefasProntas(corteTitulo[cont], corteTexto[cont]);
                     tarefasArrayTitulo.push(corteTitulo[cont]);
                     tarefasArrayTexto.push(corteTexto[cont]);
                 }
-                else{
+                else {
                     tarefasProntas(corteTitulo[cont], null);
                     tarefasArrayTitulo.push(corteTitulo[cont]);
                     tarefasArrayTexto.push(null);
