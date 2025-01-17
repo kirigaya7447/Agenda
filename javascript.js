@@ -138,10 +138,16 @@ function apagar(id) {
     let li = document.getElementById("liLista" + id);
     let liTitulo = li.innerText;
     let p = document.getElementById("paragrafoDescricao" + id);
+    let p1;
+    let p1Texto;
 
     if (p !== null && p !== "" && p !== " ") {
-        var p1 = document.getElementById("paragrafo" + id);
-        var p1Texto = p1.innerText;
+        p1 = document.getElementById("paragrafo" + id);
+        p1Texto = p1.innerText;
+    }
+    else{
+        p1 = null;
+        p1Texto = null;
     }
     let button = document.getElementById("buttonLista" + id);
     let buttonSobe = document.getElementById("buttonSobe" + id);
