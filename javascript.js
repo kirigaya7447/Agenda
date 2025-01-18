@@ -69,6 +69,9 @@ function agendar() {
             //escreve o texto do usuário
             p1.innerText = descricao;
         }
+        else{
+            descricao = null;
+        }
         //acrescenta agora o primeiro p e o segundo
         tarefas.append(p);
         tarefas.append(p1);
@@ -160,6 +163,8 @@ function apagar(id) {
     if (contador >= 1) {
 
         //corta os arrays, separando as partes pela vírgula
+        alert(localStorage.getItem("TarefasTitulo"));
+        alert(localStorage.getItem("TarefasTexto"));
         let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
         let corteTexto = localStorage.getItem("TarefasTexto").split(",");
 
@@ -176,13 +181,14 @@ function apagar(id) {
             }
 
             //verifica o texto
-            if (p1Texto !== null || p1Texto !== "" || p1Texto !== undefined || p1Texto !== " ") {
+            alert("AAAAAAA" + p1Texto);
+            if (p1Texto !== undefined) {
                 if (corteTexto[cont] !== p1Texto) {
                     tarefasArrayTexto.push(corteTexto[cont]);
                 }
             }
             else{
-                tarefasArrayTexto.push(null);
+                tarefasArrayTexto.push("null");
             }
         }
 
@@ -217,6 +223,12 @@ function apagar(id) {
 
         localStorage.removeItem("TarefasTitulo");
         localStorage.removeItem("TarefasTexto");
+    }
+
+    let denovo = localStorage.getItem("TarefasTitulo").split(",");
+    let denovo1 = localStorage.getItem("TarefasTexto").split(",");
+    for(let vacalo = 0; vacalo <= denovo.length; vacalo++){
+        alert("Title: " + denovo[vacalo] + " and text: " + denovo1[vacalo]);
     }
 }
 
