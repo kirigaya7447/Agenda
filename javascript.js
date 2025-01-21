@@ -69,6 +69,9 @@ function agendar() {
             //escreve o texto do usuário
             p1.innerText = descricao;
         }
+        else {
+            descricao = null;
+        }
         //acrescenta agora o primeiro p e o segundo
         tarefas.append(p);
         tarefas.append(p1);
@@ -145,7 +148,7 @@ function apagar(id) {
         p1 = document.getElementById("paragrafo" + id);
         p1Texto = p1.innerText;
     }
-    else{
+    else {
         p1 = null;
         p1Texto = null;
     }
@@ -170,19 +173,11 @@ function apagar(id) {
 
         //loop para montar novo array sem as partes apagadas
         for (let cont = 0; cont < corteTitulo.length; cont++) {
-            //verifica o título
+            //verifica o título, se for diferente adiciona no array, porém se for igual
+            //remove tanto o título, quanto o texto do array
             if (corteTitulo[cont] !== liTitulo) {
                 tarefasArrayTitulo.push(corteTitulo[cont]);
-            }
-
-            //verifica o texto
-            if (p1Texto !== null || p1Texto !== "" || p1Texto !== undefined || p1Texto !== " ") {
-                if (corteTexto[cont] !== p1Texto) {
-                    tarefasArrayTexto.push(corteTexto[cont]);
-                }
-            }
-            else{
-                tarefasArrayTexto.push(null);
+                tarefasArrayTexto.push(corteTexto[cont]);
             }
         }
 
@@ -218,6 +213,9 @@ function apagar(id) {
         localStorage.removeItem("TarefasTitulo");
         localStorage.removeItem("TarefasTexto");
     }
+
+    let denovo = localStorage.getItem("TarefasTitulo").split(",");
+    let denovo1 = localStorage.getItem("TarefasTexto").split(",");
 }
 
 //altera o padrão de sequência da lista ordenada
