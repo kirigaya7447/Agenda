@@ -173,7 +173,8 @@ function apagar(id) {
 
         //loop para montar novo array sem as partes apagadas
         for (let cont = 0; cont < corteTitulo.length; cont++) {
-            //verifica o título
+            //verifica o título, se for diferente adiciona no array, porém se for igual
+            //remove tanto o título, quanto o texto do array
             if (corteTitulo[cont] !== liTitulo) {
                 tarefasArrayTitulo.push(corteTitulo[cont]);
                 tarefasArrayTexto.push(corteTexto[cont]);
