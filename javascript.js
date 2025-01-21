@@ -69,7 +69,7 @@ function agendar() {
             //escreve o texto do usuário
             p1.innerText = descricao;
         }
-        else{
+        else {
             descricao = null;
         }
         //acrescenta agora o primeiro p e o segundo
@@ -148,7 +148,7 @@ function apagar(id) {
         p1 = document.getElementById("paragrafo" + id);
         p1Texto = p1.innerText;
     }
-    else{
+    else {
         p1 = null;
         p1Texto = null;
     }
@@ -163,8 +163,6 @@ function apagar(id) {
     if (contador >= 1) {
 
         //corta os arrays, separando as partes pela vírgula
-        alert(localStorage.getItem("TarefasTitulo"));
-        alert(localStorage.getItem("TarefasTexto"));
         let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
         let corteTexto = localStorage.getItem("TarefasTexto").split(",");
 
@@ -178,17 +176,7 @@ function apagar(id) {
             //verifica o título
             if (corteTitulo[cont] !== liTitulo) {
                 tarefasArrayTitulo.push(corteTitulo[cont]);
-            }
-
-            //verifica o texto
-            alert("AAAAAAA" + p1Texto);
-            if (p1Texto !== undefined) {
-                if (corteTexto[cont] !== p1Texto) {
-                    tarefasArrayTexto.push(corteTexto[cont]);
-                }
-            }
-            else{
-                tarefasArrayTexto.push("null");
+                tarefasArrayTexto.push(corteTexto[cont]);
             }
         }
 
@@ -227,9 +215,6 @@ function apagar(id) {
 
     let denovo = localStorage.getItem("TarefasTitulo").split(",");
     let denovo1 = localStorage.getItem("TarefasTexto").split(",");
-    for(let vacalo = 0; vacalo <= denovo.length; vacalo++){
-        alert("Title: " + denovo[vacalo] + " and text: " + denovo1[vacalo]);
-    }
 }
 
 //altera o padrão de sequência da lista ordenada
