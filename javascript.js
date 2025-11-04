@@ -275,6 +275,25 @@ function subirTarefa(id) {
 
     document.getElementById("liLista" + (id - 1)).value = paragrafoTitulo;
     document.getElementById("paragrafo" + (id - 1)).value = paragrafoTexto;
+
+    //corta os arrays, separando as partes pela vírgula
+        let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
+        let corteTexto = localStorage.getItem("TarefasTexto").split(",");
+
+        //zera os arrays
+        tarefasArrayTitulo = new Array();
+        tarefasArrayTexto = new Array();
+
+
+        //loop para montar novo array com as novas ordenações
+        for (let cont = 0; cont < corteTitulo.length; cont++) {
+                tarefasArrayTitulo.push(corteTitulo[cont]);
+                tarefasArrayTexto.push(corteTexto[cont]);
+        }
+
+        //seta no localstorage os arrays atualizados
+        localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
+        localStorage.setItem("TarefasTexto", tarefasArrayTexto);
 }
 
 //zera todo o conteúdo do localstorage
