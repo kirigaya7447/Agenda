@@ -267,8 +267,14 @@ function subirTarefa(id) {
     document.getElementById("liLista" + id).innerText = paragrafoTituloAntigo;
     document.getElementById("paragrafo" + id).innerText = paragrafoTextoAntigo;
 
+    document.getElementById("liLista" + id).value = paragrafoTituloAntigo;
+    document.getElementById("paragrafo" + id).value = paragrafoTextoAntigo;
+
     document.getElementById("liLista" + (id - 1)).innerText = paragrafoTitulo;
     document.getElementById("paragrafo" + (id - 1)).innerText = paragrafoTexto;
+
+    document.getElementById("liLista" + (id - 1)).value = paragrafoTitulo;
+    document.getElementById("paragrafo" + (id - 1)).value = paragrafoTexto;
 }
 
 //zera todo o conteúdo do localstorage
