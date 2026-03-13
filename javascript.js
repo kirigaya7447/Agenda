@@ -214,8 +214,6 @@ function apagar(id) {
         localStorage.removeItem("TarefasTexto");
     }
 
-    let denovo = localStorage.getItem("TarefasTitulo").split(",");
-    let denovo1 = localStorage.getItem("TarefasTexto").split(",");
 }
 
 //altera o padrão de sequência da lista ordenada
@@ -267,14 +265,8 @@ function subirTarefa(id) {
     document.getElementById("liLista" + id).innerText = paragrafoTituloAntigo;
     document.getElementById("paragrafo" + id).innerText = paragrafoTextoAntigo;
 
-    document.getElementById("liLista" + id).value = paragrafoTituloAntigo;
-    document.getElementById("paragrafo" + id).value = paragrafoTextoAntigo;
-
     document.getElementById("liLista" + (id - 1)).innerText = paragrafoTitulo;
     document.getElementById("paragrafo" + (id - 1)).innerText = paragrafoTexto;
-
-    document.getElementById("liLista" + (id - 1)).value = paragrafoTitulo;
-    document.getElementById("paragrafo" + (id - 1)).value = paragrafoTexto;
 
     //corta os arrays, separando as partes pela vírgula
         let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
@@ -287,8 +279,21 @@ function subirTarefa(id) {
 
         //loop para montar novo array com as novas ordenações
         for (let cont = 0; cont < corteTitulo.length; cont++) {
+            if(corteTitulo[cont] !== paragrafoTituloAntigo){
                 tarefasArrayTitulo.push(corteTitulo[cont]);
                 tarefasArrayTexto.push(corteTexto[cont]);
+            }
+            //se encontrar os textos que foram alternados, vai alternar a ordem no array e pular 2 
+            //porque já foram incrementados no array
+            else{
+                tarefasArrayTitulo.push(corteTitulo[cont + 1]);
+                tarefasArrayTexto.push(corteTexto[cont + 1]);
+
+                tarefasArrayTitulo.push(corteTitulo[cont]);
+                tarefasArrayTexto.push(corteTexto[cont]);
+
+                cont += 1;
+            }
         }
 
         //seta no localstorage os arrays atualizados
