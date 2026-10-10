@@ -121,9 +121,9 @@ function agendar() {
         tarefas.append(buttonSobe);
 
         //Adiciona ao array de titulos o nome da nova tarefa
-        tarefasArrayTitulo.push(titulo);
+        tarefasArrayTitulo.push(titulo + "//");
         //Adiciona ao array de textos o texto da nova tarefa
-        tarefasArrayTexto.push(descricao);
+        tarefasArrayTexto.push(descricao + "//");
 
         //seta no localstorage o array Titulo atualizado
         localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
@@ -142,7 +142,6 @@ function apagar(id) {
     let liTitulo = li.innerText;
     let p = document.getElementById("paragrafoDescricao" + id);
     let p1;
-    let p1Texto;
 
     if (p !== null && p !== "" && p !== " ") {
         p1 = document.getElementById("paragrafo" + id);
@@ -162,22 +161,36 @@ function apagar(id) {
     // se maior ou igual ele apaga a tarefa, senão ele apaga o localstorage
     if (contador >= 1) {
 
-        //corta os arrays, separando as partes pela vírgula
-        let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
-        let corteTexto = localStorage.getItem("TarefasTexto").split(",");
+        let intermediarioTitulo = [];
+        let intermediarioTexto = [];
+
+        intermediarioTitulo.push(localStorage.getItem("TarefasTitulo"));
+        intermediarioTexto.push(localStorage.getItem("TarefasTexto"));
+
+        let corteTitulo = intermediarioTitulo[0].split("//");
+        let corteTexto = intermediarioTexto[0].split("//");
 
         //zera os arrays
         tarefasArrayTitulo = new Array();
         tarefasArrayTexto = new Array();
 
+        for(let cont = 0; cont < corteTitulo.length; cont++){
+        if (corteTitulo[cont][0] === ",") {
+                    corteTitulo[cont] = corteTitulo[cont].substring(1);
+                }
+
+                if (corteTexto[cont][0] === ",") {
+                    corteTexto[cont] = corteTexto[cont].substring(1);
+                }
+            }
 
         //loop para montar novo array sem as partes apagadas
         for (let cont = 0; cont < corteTitulo.length; cont++) {
             //verifica o título, se for diferente adiciona no array, porém se for igual
             //remove tanto o título, quanto o texto do array
             if (corteTitulo[cont] !== liTitulo) {
-                tarefasArrayTitulo.push(corteTitulo[cont]);
-                tarefasArrayTexto.push(corteTexto[cont]);
+                tarefasArrayTitulo.push(corteTitulo[cont] + "//");
+                tarefasArrayTexto.push(corteTexto[cont] + "//");
             }
         }
 
@@ -214,8 +227,6 @@ function apagar(id) {
         localStorage.removeItem("TarefasTexto");
     }
 
-    let denovo = localStorage.getItem("TarefasTitulo").split(",");
-    let denovo1 = localStorage.getItem("TarefasTexto").split(",");
 }
 
 //altera o padrão de sequência da lista ordenada
@@ -269,6 +280,38 @@ function subirTarefa(id) {
 
     document.getElementById("liLista" + (id - 1)).innerText = paragrafoTitulo;
     document.getElementById("paragrafo" + (id - 1)).innerText = paragrafoTexto;
+
+    //corta os arrays, separando as partes pela vírgula
+    let corteTitulo = localStorage.getItem("TarefasTitulo").split(",");
+    let corteTexto = localStorage.getItem("TarefasTexto").split(",");
+
+    //zera os arrays
+    tarefasArrayTitulo = new Array();
+    tarefasArrayTexto = new Array();
+
+
+    //loop para montar novo array com as novas ordenações
+    for (let cont = 0; cont < corteTitulo.length; cont++) {
+        if (corteTitulo[cont] !== paragrafoTituloAntigo) {
+            tarefasArrayTitulo.push(corteTitulo[cont]);
+            tarefasArrayTexto.push(corteTexto[cont]);
+        }
+        //se encontrar os textos que foram alternados, vai alternar a ordem no array e pular 2 
+        //porque já foram incrementados no array
+        else {
+            tarefasArrayTitulo.push(corteTitulo[cont + 1]);
+            tarefasArrayTexto.push(corteTexto[cont + 1]);
+
+            tarefasArrayTitulo.push(corteTitulo[cont]);
+            tarefasArrayTexto.push(corteTexto[cont]);
+
+            cont += 1;
+        }
+    }
+
+    //seta no localstorage os arrays atualizados
+    localStorage.setItem("TarefasTitulo", tarefasArrayTitulo);
+    localStorage.setItem("TarefasTexto", tarefasArrayTexto);
 }
 
 //zera todo o conteúdo do localstorage
@@ -296,8 +339,11 @@ function initConfigurations() {
         intermediarioTitulo.push(localStorage.getItem("TarefasTitulo"));
         intermediarioTexto.push(localStorage.getItem("TarefasTexto"));
 
-        let corteTitulo = intermediarioTitulo[0].split(",");
-        let corteTexto = intermediarioTexto[0].split(",");
+        let corteTitulo = intermediarioTitulo[0].split("//");
+        let corteTexto = intermediarioTexto[0].split("//");
+
+
+        alert(corteTitulo)
 
         for (let cont = 0; cont < corteTitulo.length; cont++) {
             if (corteTitulo[cont] !== null || corteTitulo[cont] !== "") {
@@ -328,14 +374,26 @@ function tarefasProntas(titulo, tarefa) {
     cont += 1;
     contador += 1;
 
+    if (titulo[0] === ",") {
+        titulo = titulo.substring(1);
+    }
+
+    if (tarefa[0] === ",") {
+        tarefa = tarefa.substring(1);
+    }
+
     //cria uma tag li
     let li = document.createElement("li");
     //adiciona a class
     li.classList.add("liLista");
     //adiciona o id baseado no contador
     li.id = "liLista" + cont;
+
+    if (titulo !== null && titulo !== "" && titulo !== undefined && titulo !== " ") {
     //escreve o título com o dado do localstorage
+    alert(titulo);
     li.innerText = titulo;
+    }
 
     //cria uma tag p
     let p = document.createElement("p");
@@ -356,10 +414,6 @@ function tarefasProntas(titulo, tarefa) {
 
     }
 
-    tarefas.append(li);
-    tarefas.append(p);
-    tarefas.append(p1);
-
     //cria o botão
     let button = document.createElement("button");
     //adiciona o class
@@ -379,8 +433,6 @@ function tarefasProntas(titulo, tarefa) {
         apagar(this.value);
     }
 
-    //adiciona o botão
-    tarefas.append(button);
 
     //cria um botão
     let buttonSobe = document.createElement("button");
@@ -401,6 +453,9 @@ function tarefasProntas(titulo, tarefa) {
         subirTarefa(this.value);
     }
 
-    //adiciona o botão
+    tarefas.append(li);
+    tarefas.append(p);
+    tarefas.append(p1);
+    tarefas.append(button);
     tarefas.append(buttonSobe);
 }
